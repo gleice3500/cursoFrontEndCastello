@@ -1,0 +1,20 @@
+{
+    "usuarios": [
+        {"id": 1, "nome": "Alice", "email": "clientes@email.com","senha": "12345","tipo": "cliente"},
+        {"id": 2, "nome": "Tiago ", "email": "corretor@email.com","senha": "51234","tipo": "corretor"}
+    ],
+    "imoveis": [
+        {"id":1, 
+        "titulo":"Casa de Praia", 
+        "descricao":"Linda casa de praia com vista para o mar", 
+        "preco":500000, 
+        "endereco":"Rua das Conchas, 123", 
+        "tipo":"casa", 
+        "status":"disponivel", 
+        "corretorId":2
+    }   
+    ],
+    "interesses": [
+        
+    ]
+}

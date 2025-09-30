@@ -1,0 +1,6 @@
+<h2>Registrar Pedido</h2>
+<label for="">Cliente:</label>
+<select name="clienteSelecionadoId" id="" [(ngModel)]="clienteSelecionadoId">
+  <option value="">Selecione um Cliente</option>
+  <option *ngFor="let cliente of clientes" [value]=""cliente.id>{{cliente.nome}}</option>
+</select>
