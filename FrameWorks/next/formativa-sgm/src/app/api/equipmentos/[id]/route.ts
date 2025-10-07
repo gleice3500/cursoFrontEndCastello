@@ -1,11 +1,11 @@
-// rotas que não precisam de ID (GET / POST)
+//Rotas que Precisam do ID ( PATCH ou PUT. DELETE, GET(one))
 
 import {
-
-  createEquipamento,
-  getEquipamentos,
+  
+  getEquipamentoById,
+  updateEquipamento,
 } from "@/controllers/EquipamentoController";
-import { getOrdemServicoById } from "@/controllers/OdemServicoController";
+import { deleteModel } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 interface Parametro {
@@ -20,11 +20,11 @@ export async function PATCH(
   try {
     const { id } = params;
     const data = await req.json();
-    const OrdemServicoAtualizado = await updateOrdemServico(id, data);
-    if (!OrdemServicoAtualizado) {
+    const EquipamentoAtualizado = await updateEquipamento(id, data);
+    if (!EquipamentoAtualizado) {
       return NextResponse.json({ success: false, error: "Not Found" });
     }
-    return NextResponse.json({ success: true, data: OrdemServicoAtualizado });
+    return NextResponse.json({ success: true, data: EquipamentoAtualizado });
   } catch (error) {
     return NextResponse.json({ success: false, error: error });
   }
@@ -34,7 +34,7 @@ export async function PATCH(
 export async function GET({ params }: { params: Parametro }) {
   try {
     const { id } = params;
-    const data = await getOrdemServicoById(id);
+    const data = await getEquipamentoById(id);
     if (!data) {
       return NextResponse.json({ success: false, error: "Not Found" });
     }
@@ -48,13 +48,9 @@ export async function GET({ params }: { params: Parametro }) {
 export async function DELETE({ params }: { params: Parametro }) {
   try {
     const { id } = params;
-    await deleteOrdemServico(id);
+    await deleteModel(id);    
     return NextResponse.json({ success: true, data: {} });
   } catch (error) {
     return NextResponse.json({ success: false, error: error });
   }
 }
-function updateOrdemServico(id: string, data: any) {
-    throw new Error("Function not implemented.");
-}
-

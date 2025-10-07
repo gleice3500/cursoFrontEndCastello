@@ -1,4 +1,4 @@
-# Sistema de Getão de Manutenção (SGM) - Formativa
+# Sistema de Gestão de Manutenção (SGM) - Formativa
 
 ## Briefing
 O projeto consiste no desenvolvimento de um Sistema de Gestão de Manutenção (SGM) no formato de uma aplicação web. O objetivo é centralizar e otimizar o controle das atividades de manutenção de máquinas e equipamentos de uma empresa. A plataforma permitirá o cadastro de equipamentos, agendamento de manutenções preventivas e corretivas, e o gerenciamento de ordens de serviço.
@@ -121,9 +121,9 @@ graph TD
         caso5([Acessar o Dasboard])
     end
 
-    Tecnico([Técnico de Manutenção])
-    Gerente([Gerente de Manutenção])
-    Admin([Administrador do Sistema])
+    Tecnico([👷 Técnico de Manutenção])
+    Gerente([📋 Gerente de Manutenção])
+    Admin([⚙️ Administrador do Sistema])
 
     Tecnico --> caso1
     Tecnico --> caso2
@@ -207,11 +207,8 @@ A tabela abaixo apresenta os riscos identificados no projeto **SGM**, organizado
 
 ## Prototipagem
 
-login 
+- colocar o link da prototicagem 
 
-tela dashboard
-usuario
-email
-senha 
+
 
 
