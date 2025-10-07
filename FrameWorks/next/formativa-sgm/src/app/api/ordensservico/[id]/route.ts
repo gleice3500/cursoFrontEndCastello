@@ -3,6 +3,7 @@ import {
    createEquipamento,
   getEquipamentos,
 } from "@/controllers/EquipamentoController";
+import { getOrdemServicoById } from "@/controllers/OdemServicoController";
 import { NextRequest, NextResponse } from "next/server";
 
 interface Parametro {
