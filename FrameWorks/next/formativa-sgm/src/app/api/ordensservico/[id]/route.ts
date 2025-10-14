@@ -1,11 +1,5 @@
-// rotas que não precisam de ID (GET / POST)
-
 import {
-
-  createEquipamento,
-  getEquipamentos,
-} from "@/controllers/EquipamentoController";
-import { getOrdemServicoById } from "@/controllers/OdemServicoController";
+} from "@/controllers/OrdemServicoController";
 import { NextRequest, NextResponse } from "next/server";
 
 interface Parametro {
@@ -54,7 +48,3 @@ export async function DELETE({ params }: { params: Parametro }) {
     return NextResponse.json({ success: false, error: error });
   }
 }
-function updateOrdemServico(id: string, data: any) {
-    throw new Error("Function not implemented.");
-}
-
