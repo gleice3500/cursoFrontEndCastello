@@ -1,20 +1,19 @@
 import mongoose from 'mongoose';
 
-const OrderSchema = new mongoose.Schema({
+const PedidoSchema = new mongoose.Schema({
   tableNumber: { type: Number, required: true },
-  items: [
-    {
-      item: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' },
-      quantity: { type: Number, default: 1 },
-    }
-  ],
+  items: [{
+    item: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem', required: true },
+    quantity: { type: Number, required: true, default: 1 },
+  }],
   status: {
     type: String,
     enum: ['Recebido', 'Em Preparo', 'Entregue'],
     default: 'Recebido',
   },
-  total: { type: Number, default: 0 },
-  closed: { type: Boolean, default: false },
-}, { timestamps: true });
+  createdAt: { type: Date, default: Date.now }
+});
 
-export default mongoose.models.Order || mongoose.model('Order', OrderSchema);
+const Pedido = mongoose.models.Pedido || mongoose.model('Pedido', PedidoSchema);
+
+export default Pedido;

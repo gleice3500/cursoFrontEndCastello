@@ -1,29 +1,29 @@
 import connectDB from '@/lib/db';
-import Order from '@/models/Order';
+import Pedido from '@/models/Order';
 import MenuItem from '@/models/MenuItem';
 import { NextResponse } from 'next/server';
 
-export async function POST(req) {
-  await connectDB();
-  const { tableNumber, items } = await req.json();
-
-  let total = 0;
-  for (let { item, quantity } of items) {
-    const menuItem = await MenuItem.findById(item);
-    if (menuItem) total += menuItem.price * quantity;
-  }
-
-  const order = await Order.create({
-    tableNumber,
-    items,
-    total,
-  });
-
-  return NextResponse.json(order);
-}
-
 export async function GET() {
   await connectDB();
-  const orders = await Order.find().populate('items.item').sort({ createdAt: 1 });
-  return NextResponse.json(orders);
+  const pedidos = await Pedido.find().populate('items.item').sort({ createdAt: -1 });
+  return NextResponse.json(pedidos);
+}
+
+export async function POST(req) {
+  await connectDB();
+  const data = await req.json();
+
+  if (!data.tableNumber || !data.items || !data.items.length) {
+    return NextResponse.json({ error: 'Número da mesa e itens são obrigatórios' }, { status: 400 });
+  }
+
+  const pedido = new Pedido({
+    tableNumber: data.tableNumber,
+    items: data.items.map(({ itemId, quantity }) => ({ item: itemId, quantity })),
+    status: 'Recebido'
+  });
+
+  await pedido.save();
+
+  return NextResponse.json(pedido);
 }
